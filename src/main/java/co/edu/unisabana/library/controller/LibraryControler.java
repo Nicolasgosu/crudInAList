@@ -34,7 +34,7 @@ public class LibraryControler {
         if (this.catalog.POST(title, author, editorial, isbn)){
             return "book added successfully";
         }else{
-            throw new NotFoundException(HttpStatus.SERVICE_UNAVAILABLE, "Book could not be added ");
+            throw new NotFoundException(HttpStatus.NO_CONTENT, "Book could not be added ");
         }
     }
 
