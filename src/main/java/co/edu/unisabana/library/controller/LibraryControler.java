@@ -1,6 +1,8 @@
 package co.edu.unisabana.library.controller;
 
 
+import exception.NotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,7 +34,7 @@ public class LibraryControler {
         if (this.catalog.POST(title, author, editorial, isbn)){
             return "book added successfully";
         }else{
-            return "error";
+            throw new NotFoundException(HttpStatus.SERVICE_UNAVAILABLE, "Book could not be added ");
         }
     }
 
@@ -41,7 +43,7 @@ public class LibraryControler {
         if (this.catalog.DELETE(isbn)){
             return "book deleted successfully";
         }
-        return "error";    
+        throw new NotFoundException(HttpStatus.NOT_FOUND, "Book not found ");
     }
 
     @GetMapping(value = "/change/{isbn}/{property}/{value}")

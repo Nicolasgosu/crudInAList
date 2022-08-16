@@ -1,6 +1,9 @@
 package co.edu.unisabana.library.dto;
 
+import exception.NotFoundException;
 import lombok.Data;
+import org.springframework.http.HttpStatus;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,6 +74,6 @@ public class Catalog {
                 }
             }
         }
-        return new BookDTO("error", "404", "there is no book with ISBN:", isbn);
+        throw new NotFoundException(HttpStatus.NOT_FOUND, "Book could not be modified ");
     }
 }
